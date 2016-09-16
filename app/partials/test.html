@@ -1,0 +1,65 @@
+<style>
+    table.md-table td.md-cell {
+        max-width: 250px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+    md-toolbar form > input:focus {
+        outline: none;
+    }
+</style>
+<div class="container-fluid">
+    <md-card>
+        <md-toolbar style="background-color:white">
+            <div class="md-toolbar-tools">
+                <ng-md-icon icon="search" style="fill:black"></ng-md-icon>
+                <form style="margin-left:0.5em" flex name="searchForm" class="ng-valid flex ng-dirty ng-valid-parse">
+                    <input style="border:none" ng-model="search" ng-model-options="{ debounce: 800 }" ng-change="updateData()" type="text" placeholder="name or accession" >
+                </form>
+            </div>
+        </md-toolbar>
+        <md-table-container>
+            <table md-table md-progress="promise">
+                <thead md-head md-order="ordering" md-on-reorder="updateData">
+                    <tr md-row>
+                        <th md-column><span>Name</span></th>
+                        <th md-column><span>Accession</span></th>
+                        <th md-column><span>Host</span></th>
+                        <th md-column>
+                            <span>
+                                <md-input-container>
+                                    <label>Spanin type</label>
+                                    <md-select name="spanin_type" ng-model="choice" ng-change="updateData()">
+                                        <md-option value="">All</md-option>
+                                        <md-option ng-repeat="type in spanin_types" value="{{type}}">{{type | spanin_type_filter}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </span>
+                        </th>
+                        <th md-column><span>i-spanin</span></th>
+                        <th md-column><span>o-spanin</span></th>
+                        <th md-column><span>u-spanin</span></th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="phage in phages">
+                        <td md-cell>{{phage.name}}</td>
+                        <td md-cell>{{phage.accession}}</td>
+                        <td md-cell>{{phage.host.name}}</td>
+                        <td md-cell>{{phage.spanin_type}}</td>
+                        <td md-cell>{{phage.i_spanin.sequence}}</td>
+                        <td md-cell>{{phage.o_spanin.sequence}}</td>
+                        <td md-cell>{{phage.u_spanin.sequence}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <md-table-pagination
+            md-limit="query.limit"
+            md-page="query.page"
+            md-total="{{phages.meta.count}}"
+            md-page-select="options.pageSelect"
+            md-on-paginate="updateData">
+        </md-table-pagination>
+    </md-card>
+</div>
