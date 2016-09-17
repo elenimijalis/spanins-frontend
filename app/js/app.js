@@ -66,10 +66,14 @@ spaninsApp.controller('TestCtrl', ['$scope', 'Restangular',
             }
             $scope.query.ordering = $scope.ordering;
             $scope.query.search = $scope.search;
-            //$scope.query.spanin_type = $scope.choice;
+            $scope.query.spanin_type = $scope.choice;
             $scope.promise = Restangular.all('phages').getList($scope.query).then(function(data) {
                 $scope.phages = data;
             });
+        };
+
+        $scope.idk = function() {
+            console.log('idk');
         };
 
         $scope.options = {
@@ -81,7 +85,7 @@ spaninsApp.controller('TestCtrl', ['$scope', 'Restangular',
             limit: 10,
             page: 1,
             search: $scope.search,
-            //spanin_type: $scope.choice,
+            spanin_type: $scope.choice,
         };
 
         $scope.updateData(1);
