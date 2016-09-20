@@ -14,12 +14,16 @@ var spaninsApp = angular.module('spaninsApp', [
 spaninsApp.config(['$routeProvider', 'RestangularProvider',
     function($routeProvider, RestangularProvider) {
         $routeProvider.
-            when('/test', {
-                templateUrl: 'partials/test.html',
-                controller: 'TestCtrl'
+            when('/phages', {
+                templateUrl: 'partials/phage_list.html',
+                controller: 'PhageListCtrl'
+            }).
+            when('/phages/:phageID', {
+                templateUrl: 'partials/phage_detail.html',
+                controller: 'PhageDetailCtrl'
             }).
             otherwise({
-                redirectTo: '/test'
+                redirectTo: '/phages'
             });
         RestangularProvider.setBaseUrl('http://localhost:8000/');
         RestangularProvider.setRequestSuffix('/');
@@ -56,8 +60,12 @@ spaninsApp.filter('spanin_type_filter', function() {
     };
 });
 
-spaninsApp.controller('TestCtrl', ['$scope', 'Restangular',
-    function($scope, Restangular) {
+spaninsApp.controller('PhageListCtrl', ['$scope', 'Restangular', '$location',
+    function($scope, Restangular, $location) {
+        $scope.go = function(id) {
+            $location.path('/phages/' + id);
+        };
+
         $scope.spanin_types = [0, 1, 2, 3];
         $scope.choice = '';
         $scope.updateData = function(page) {
@@ -89,4 +97,11 @@ spaninsApp.controller('TestCtrl', ['$scope', 'Restangular',
         };
 
         $scope.updateData(1);
+}]);
+
+spaninsApp.controller('PhageDetailCtrl', ['$scope', 'Restangular', '$routeParams',
+    function($scope, Restangular, $routeParams) {
+        Restangular.one('phages', $routeParams.phageID).get().then(function(data) {
+            $scope.phage = data;
+        });
 }]);

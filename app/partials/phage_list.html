@@ -7,6 +7,17 @@
     md-toolbar form > input:focus {
         outline: none;
     }
+    tbody .md-row:hover {
+        background-color: #d9d9d9;
+    }
+    tbody .md-row:focus {
+        outline:none;
+    }
+    [ng-click],
+    [data-ng-click],
+    [x-ng-click] {
+        cursor: pointer;
+    }
 </style>
 <div class="container-fluid">
     <md-card>
@@ -23,7 +34,7 @@
                 <thead md-head md-order="ordering" md-on-reorder="updateData">
                     <tr md-row>
                         <th md-column><span>Name</span></th>
-                        <th md-column><span>Accession</span></th>
+                        <th md-column><span>Accession or CDS</span></th>
                         <th md-column><span>Host</span></th>
                         <th md-column>
                             <span>
@@ -42,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row ng-repeat="phage in phages">
+                    <tr md-row ng-repeat="phage in phages" ng-click="go(phage.id)">
                         <td md-cell>{{phage.name}}</td>
                         <td md-cell>{{phage.accession}}</td>
                         <td md-cell>{{phage.host.name}}</td>

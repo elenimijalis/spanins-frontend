@@ -1,0 +1,27 @@
+<div class="container-fluid" layout="row" layout-align="center-center">
+    <md-card flex="50">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Phage {{phage.name}}</span>
+                <span class="md-subhead">{{phage.host.name}}</span>
+                <md-divider></md-divider>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <span>Spanin type: {{phage.spanin_type}}</span>
+            <br></br>
+            <div ng-if="phage.spanin_type != 'unimolecular'">
+                <div style="font-weight:bold">i-spanin</div>
+                <div style="word-wrap:break-word;">{{phage.i_spanin.sequence}}</div>
+                <br></br>
+                <div style="font-weight:bold">o-spanin</div>
+                <div style="word-wrap:break-word;">{{phage.o_spanin.sequence}}</div>
+            </div>
+            <div ng-if="phage.spanin_type == 'unimolecular'">
+                <div style="font-weight:bold">u-spanin</div>
+                <div style="word-wrap:break-word;">{{phage.u_spanin.sequence}}</div>
+            </div>
+            <md-divider></md-divider>
+        </md-card-content>
+    </md-card>
+</div>
