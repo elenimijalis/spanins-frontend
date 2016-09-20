@@ -12,13 +12,16 @@
             <br></br>
             <div ng-if="phage.spanin_type != 'unimolecular'">
                 <div style="font-weight:bold">i-spanin</div>
+                <div style="font-style:italic">{{phage.i_spanin.gene_name}}</div>
                 <div style="word-wrap:break-word;">{{phage.i_spanin.sequence}}</div>
                 <br></br>
                 <div style="font-weight:bold">o-spanin</div>
+                <div style="font-style:italic">{{phage.o_spanin.gene_name}}</div>
                 <div style="word-wrap:break-word;">{{phage.o_spanin.sequence}}</div>
             </div>
             <div ng-if="phage.spanin_type == 'unimolecular'">
                 <div style="font-weight:bold">u-spanin</div>
+                <div style="font-style:italic">{{phage.u_spanin.gene_name}}</div>
                 <div style="word-wrap:break-word;">{{phage.u_spanin.sequence}}</div>
             </div>
             <md-divider></md-divider>
