@@ -1,3 +1,12 @@
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+    }
+</style>
 <div class="container-fluid" layout="row" layout-align="center-center">
     <table>
         <tr>
@@ -11,14 +20,14 @@
             <th>us</th>
         </tr>
         <tr ng-repeat="sd in sds">
-            <td>{{sd}}</td>
-            <td>{{idk[sd].eis}}</td>
-            <td>{{idk[sd].eos}}</td>
-            <td>{{idk[sd].ois}}</td>
-            <td>{{idk[sd].oos}}</td>
-            <td>{{idk[sd].sis}}</td>
-            <td>{{idk[sd].sos}}</td>
-            <td>{{idk[sd].us}}</td>
+            <td align="center">{{sd}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].eis)}" align="center">{{idk[sd].eis}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].eos)}" align="center">{{idk[sd].eos}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].ois)}" align="center">{{idk[sd].ois}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].oos)}" align="center">{{idk[sd].oos}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].sis)}" align="center">{{idk[sd].sis}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].sos)}" align="center">{{idk[sd].sos}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].us)}" align="center">{{idk[sd].us}}</td>
         </tr>
     </table>
 </div>

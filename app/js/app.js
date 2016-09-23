@@ -81,6 +81,23 @@ spaninsApp.filter('spanin_type_filter', function() {
     };
 });
 
+spaninsApp.filter('color_filter', function() {
+    return function(input) {
+        switch(true) {
+            case (input < 5):
+                return "yellow";
+            case (input >= 5 && input < 10):
+                return "orange";
+            case (input >= 10 && input < 15):
+                return "orange";
+            case (input >= 15 && input < 20):
+                return "red";
+            case (input >= 20):
+                return "maroon";
+        }
+    };
+});
+
 spaninsApp.controller('PhageListCtrl', ['$scope', 'Restangular', '$location',
     function($scope, Restangular, $location) {
         $scope.go = function(id) {
@@ -127,14 +144,14 @@ spaninsApp.controller('PhageDetailCtrl', ['$scope', 'Restangular', '$routeParams
         });
 }]);
 
-spaninsApp.controller('SpaninFreqCtrl', ['$scope', 'Restangular',
-    function($scope, Restangular) {
+spaninsApp.controller('SpaninFreqCtrl', ['$scope', 'Restangular', '$filter',
+    function($scope, Restangular, $filter) {
         $scope.sds = sds
+        $scope.heatmap = function(i) {
+            return $filter('color_filter')(i);
+        };
+
         Restangular.oneUrl('spaninfreq', 'http://localhost:8000/spaninfreq/').get().then(function(data) {
             $scope.idk = data.plain();
-            //for (var i in sds) {
-                 //console.log(sds[i]);
-                 //console.log($scope.idk[sds[i]])
-            //}
         });
 }]);
