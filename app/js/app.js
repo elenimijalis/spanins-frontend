@@ -85,15 +85,17 @@ spaninsApp.filter('color_filter', function() {
     return function(input) {
         switch(true) {
             case (input < 5):
-                return "yellow";
+                return "#ffff99";
             case (input >= 5 && input < 10):
-                return "orange";
+                return "#ffff00";
             case (input >= 10 && input < 15):
-                return "orange";
+                return "#ff9900";
             case (input >= 15 && input < 20):
-                return "red";
-            case (input >= 20):
-                return "maroon";
+                return "#e65c00";
+            case (input >= 20 && input < 30):
+                return "#ff0000";
+            case (input >= 30):
+                return '#990000'
         }
     };
 });
