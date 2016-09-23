@@ -11,6 +11,23 @@ var spaninsApp = angular.module('spaninsApp', [
     'ngAnimate'
 ]);
 
+var sds = [
+            'AGGAGGT',
+            'AGGAGG',
+            'GGAGGT',
+            'AGGAG',
+            'GGAGG',
+            'GAGGT',
+            'AGGA',
+            'GGAG',
+            'GAGG',
+            'AGGT',
+            'AGG',
+            'GGA',
+            'GAG',
+            'GGT'
+        ]
+
 spaninsApp.config(['$routeProvider', 'RestangularProvider',
     function($routeProvider, RestangularProvider) {
         $routeProvider.
@@ -21,6 +38,10 @@ spaninsApp.config(['$routeProvider', 'RestangularProvider',
             when('/phages/:phageID', {
                 templateUrl: 'partials/phage_detail.html',
                 controller: 'PhageDetailCtrl'
+            }).
+            when('/spaninfreq', {
+                templateUrl: 'partials/spanin_freq.html',
+                controller: 'SpaninFreqCtrl'
             }).
             otherwise({
                 redirectTo: '/phages'
@@ -103,5 +124,17 @@ spaninsApp.controller('PhageDetailCtrl', ['$scope', 'Restangular', '$routeParams
     function($scope, Restangular, $routeParams) {
         Restangular.one('phages', $routeParams.phageID).get().then(function(data) {
             $scope.phage = data;
+        });
+}]);
+
+spaninsApp.controller('SpaninFreqCtrl', ['$scope', 'Restangular',
+    function($scope, Restangular) {
+        $scope.sds = sds
+        Restangular.oneUrl('spaninfreq', 'http://localhost:8000/spaninfreq/').get().then(function(data) {
+            $scope.idk = data.plain();
+            //for (var i in sds) {
+                 //console.log(sds[i]);
+                 //console.log($scope.idk[sds[i]])
+            //}
         });
 }]);
