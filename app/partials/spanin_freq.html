@@ -21,13 +21,13 @@
         </tr>
         <tr ng-repeat="sd in sds">
             <td align="center">{{sd}}</td>
-            <td ng-style="{'background-color': heatmap(idk[sd].eis)}" align="center">{{idk[sd].eis}}</td>
-            <td ng-style="{'background-color': heatmap(idk[sd].eos)}" align="center">{{idk[sd].eos}}</td>
-            <td ng-style="{'background-color': heatmap(idk[sd].ois)}" align="center">{{idk[sd].ois}}</td>
-            <td ng-style="{'background-color': heatmap(idk[sd].oos)}" align="center">{{idk[sd].oos}}</td>
-            <td ng-style="{'background-color': heatmap(idk[sd].sis)}" align="center">{{idk[sd].sis}}</td>
-            <td ng-style="{'background-color': heatmap(idk[sd].sos)}" align="center">{{idk[sd].sos}}</td>
-            <td ng-style="{'background-color': heatmap(idk[sd].us)}" align="center">{{idk[sd].us}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].eis, 'eis')}" align="center">{{ratio(idk[sd].eis, 'eis')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].eos, 'eos')}" align="center">{{ratio(idk[sd].eos, 'eos')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].ois, 'ois')}" align="center">{{ratio(idk[sd].ois, 'ois')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].oos, 'oos')}" align="center">{{ratio(idk[sd].oos, 'oos')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].sis, 'sis')}" align="center">{{ratio(idk[sd].sis, 'sis')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].sos, 'sos')}" align="center">{{ratio(idk[sd].sos, 'sos')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[sd].us, 'us')}" align="center">{{ratio(idk[sd].us, 'us')}}</td>
         </tr>
     </table>
 </md-content>

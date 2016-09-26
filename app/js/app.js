@@ -11,22 +11,25 @@ var spaninsApp = angular.module('spaninsApp', [
     'ngAnimate'
 ]);
 
-var sds = [
-            'AGGAGGT',
-            'AGGAGG',
-            'GGAGGT',
-            'AGGAG',
-            'GGAGG',
-            'GAGGT',
-            'AGGA',
-            'GGAG',
-            'GAGG',
-            'AGGT',
-            'AGG',
-            'GGA',
-            'GAG',
-            'GGT'
-        ]
+var sds = ['AGGAGGT',
+           'GGAGGT',
+           'AGGAGG',
+           'GGGGGG',
+           'GGAGG',
+           'GGGGG',
+           'GAGGT',
+           'AGGAG',
+           'GAGG',
+           'GGAG',
+           'AGGT',
+           'AGGA',
+           'GGGG',
+           'GGT',
+           'AGG',
+           'GAG',
+           'GGA',
+           'GGG'
+           ]
 
 spaninsApp.config(['$routeProvider', 'RestangularProvider',
     function($routeProvider, RestangularProvider) {
@@ -85,17 +88,17 @@ spaninsApp.filter('color_filter', function() {
     return function(input) {
         switch(true) {
             case (input < 5):
-                return "#ffff99";
+                return "#ffffb2";
             case (input >= 5 && input < 10):
-                return "#ffff00";
+                return "#fed976";
             case (input >= 10 && input < 15):
-                return "#ff9900";
+                return "#feb24c";
             case (input >= 15 && input < 20):
-                return "#e65c00";
+                return "#fd8d3c";
             case (input >= 20 && input < 30):
-                return "#ff0000";
+                return "#f03b20";
             case (input >= 30):
-                return '#990000'
+                return '#bd0026'
         }
     };
 });
@@ -149,11 +152,34 @@ spaninsApp.controller('PhageDetailCtrl', ['$scope', 'Restangular', '$routeParams
 spaninsApp.controller('SpaninFreqCtrl', ['$scope', 'Restangular', '$filter',
     function($scope, Restangular, $filter) {
         $scope.sds = sds
-        $scope.heatmap = function(i) {
-            return $filter('color_filter')(i);
+        $scope.ratio = function(i, j) {
+            if (i) {
+                return (i/$scope[j]*100).toFixed(1);
+            } else {
+                return 0;
+            }
+        };
+        $scope.heatmap = function(i, j) {
+            return $filter('color_filter')((i/$scope[j]*100).toFixed(1));
         };
 
         Restangular.oneUrl('spaninfreq', 'http://localhost:8000/spaninfreq/').get().then(function(data) {
             $scope.idk = data.plain();
+            $scope.eis = 0;
+            $scope.eos = 0;
+            $scope.ois = 0;
+            $scope.oos = 0;
+            $scope.sis = 0;
+            $scope.sos = 0;
+            $scope.us = 0;
+            for (var i in $scope.idk) {
+                $scope.eis = $scope.eis + $scope.idk[i].eis;
+                $scope.eos = $scope.eos + $scope.idk[i].eos;
+                $scope.ois = $scope.ois + $scope.idk[i].ois;
+                $scope.oos = $scope.oos + $scope.idk[i].oos;
+                $scope.sis = $scope.sis + $scope.idk[i].sis;
+                $scope.sos = $scope.sos + $scope.idk[i].sos;
+                $scope.us = $scope.us + $scope.idk[i].us;
+            }
         });
 }]);
