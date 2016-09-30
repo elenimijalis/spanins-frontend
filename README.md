@@ -11,6 +11,7 @@ $ python -m SimpleHTTPServer 8080
 ## Features
 #### Searchable table of spanins
 * Optional filter for spanin type (overlapping, embedded, sepaprate, or unimolecular)
+
 ![](/images/table.png)
 
 #### Detail spanin view
