@@ -11,14 +11,14 @@ $ python -m SimpleHTTPServer 8080
 ## Features
 * Searchable table of spanins
 * Optional filter for spanin type (overlapping, embedded, sepaprate, or unimolecular)
-(/images/table.png)
+![](/images/table.png)
 
 * Detail spanin view
-(/images/detail.png)
+![](/images/detail.png)
 
 * Heatmap showing Shine-Dalgarno sequence frequencies
   - ois/oos: overlapping i/o spanins
   - eis/eos: embedded i/o spanins
   - sis/sos: separate i/o spanins
   - us:      unimolecular spanins
-(/images/heatmap.png)
+![](/images/heatmap.png)
