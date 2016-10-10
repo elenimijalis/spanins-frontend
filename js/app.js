@@ -28,7 +28,8 @@ var sds = ['AGGAGGT',
            'AGG',
            'GAG',
            'GGA',
-           'GGG'
+           'GGG',
+           ''
            ]
 
 spaninsApp.config(['$routeProvider', 'RestangularProvider',
