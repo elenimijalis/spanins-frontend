@@ -1,0 +1,33 @@
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+    }
+</style>
+<md-content layout="row" layout-align="center-center" layout-padding>
+    <table>
+        <tr>
+            <th></th>
+            <th>eis</th>
+            <th>eos</th>
+            <th>ois</th>
+            <th>oos</th>
+            <th>sis</th>
+            <th>sos</th>
+            <th>us</th>
+        </tr>
+        <tr ng-repeat="score in scores">
+            <td align="center">{{score}}</td>
+            <td ng-style="{'background-color': heatmap(idk[score].eis, 'eis')}" align="center">{{ratio(idk[score].eis, 'eis')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[score].eos, 'eos')}" align="center">{{ratio(idk[score].eos, 'eos')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[score].ois, 'ois')}" align="center">{{ratio(idk[score].ois, 'ois')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[score].oos, 'oos')}" align="center">{{ratio(idk[score].oos, 'oos')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[score].sis, 'sis')}" align="center">{{ratio(idk[score].sis, 'sis')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[score].sos, 'sos')}" align="center">{{ratio(idk[score].sos, 'sos')}}</td>
+            <td ng-style="{'background-color': heatmap(idk[score].us, 'us')}" align="center">{{ratio(idk[score].us, 'us')}}</td>
+        </tr>
+    </table>
+</md-content>

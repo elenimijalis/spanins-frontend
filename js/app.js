@@ -32,6 +32,17 @@ var sds = ['AGGAGGT',
            ''
            ]
 
+var scores = [18,
+              16,
+              14,
+              13,
+              11,
+              10,
+               8,
+               7,
+               0
+             ]
+
 spaninsApp.config(['$routeProvider', 'RestangularProvider',
     function($routeProvider, RestangularProvider) {
         $routeProvider.
@@ -46,6 +57,10 @@ spaninsApp.config(['$routeProvider', 'RestangularProvider',
             when('/spaninfreq', {
                 templateUrl: 'partials/spanin_freq.html',
                 controller: 'SpaninFreqCtrl'
+            }).
+            when('/spaninscore', {
+                templateUrl: 'partials/spanin_score.html',
+                controller: 'SpaninScoreCtrl'
             }).
             otherwise({
                 redirectTo: '/phages'
@@ -165,6 +180,41 @@ spaninsApp.controller('SpaninFreqCtrl', ['$scope', 'Restangular', '$filter',
         };
 
         Restangular.oneUrl('spaninfreq', 'http://localhost:8000/spaninfreq/').get().then(function(data) {
+            $scope.idk = data.plain();
+            $scope.eis = 0;
+            $scope.eos = 0;
+            $scope.ois = 0;
+            $scope.oos = 0;
+            $scope.sis = 0;
+            $scope.sos = 0;
+            $scope.us = 0;
+            for (var i in $scope.idk) {
+                $scope.eis = $scope.eis + $scope.idk[i].eis;
+                $scope.eos = $scope.eos + $scope.idk[i].eos;
+                $scope.ois = $scope.ois + $scope.idk[i].ois;
+                $scope.oos = $scope.oos + $scope.idk[i].oos;
+                $scope.sis = $scope.sis + $scope.idk[i].sis;
+                $scope.sos = $scope.sos + $scope.idk[i].sos;
+                $scope.us = $scope.us + $scope.idk[i].us;
+            }
+        });
+}]);
+
+spaninsApp.controller('SpaninScoreCtrl', ['$scope', 'Restangular', '$filter',
+    function($scope, Restangular, $filter) {
+        $scope.scores = scores
+        $scope.ratio = function(i, j) {
+            if (i) {
+                return (i/$scope[j]*100).toFixed(1);
+            } else {
+                return 0;
+            }
+        };
+        $scope.heatmap = function(i, j) {
+            return $filter('color_filter')((i/$scope[j]*100).toFixed(1));
+        };
+
+        Restangular.oneUrl('spaninfreq', 'http://localhost:8000/spaninscore/').get().then(function(data) {
             $scope.idk = data.plain();
             $scope.eis = 0;
             $scope.eos = 0;
