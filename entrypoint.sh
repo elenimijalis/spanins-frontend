@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "Built files are in /output, please serve them with a second container"
+sed -i "s|http://localhost:8000|$BACKEND_URL|g" /output/js/app.js
+echo "This container is complete, please serve the files from a static file server container. They have been build in /output/"
