@@ -1,5 +1,5 @@
 # spanins-frontend
-This front end to https://github.com/elenimijalis/spanins was build using AngularJS.
+This front end to https://github.com/elenimijalis/spanins was built using AngularJS.
 
 ## Usage
 In app:
