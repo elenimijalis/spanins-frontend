@@ -1,4 +1,16 @@
-'use strict';
+window._ = require('lodash');
+require('angular');
+require('angular-route');
+require('restangular');
+require('angular-resource');
+require('angular-material');
+require('angular-material-icons');
+require('angular-aria');
+require('angular-gravatar');
+require('angular-material-data-table');
+require('angular-messages');
+require('angular-animate');
+require('jquery');
 
 /* App Module */
 
