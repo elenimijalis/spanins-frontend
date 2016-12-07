@@ -22,9 +22,13 @@
     </head>
     <body>
 
-        <md-toolbar id="navbar" style="background-color:#500000">
+        <md-toolbar layout="row" id="navbar" style="background-color:#500000">
             <div class="md-toolbar-tools">
-                <span>CPT Spanin Database</span>
+                <a ng-href="#/phages">CPT Spanin Database</a>
+            </div>
+            <div layout="row" layout-align="center center">
+                <a style="text-decoration:none; color:white;" ng-href="#/spaninscore"><md-button aria-label="Scores">Scores</md-button></a>
+                <a style="text-decoration:none; color:white;" ng-href="#/spaninfreq"><md-button aria-label="Frequencies">Frequencies</md-button></a>
             </div>
         </md-toolbar>
         <div class="view-container">
