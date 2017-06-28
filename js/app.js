@@ -161,7 +161,7 @@ spaninsApp.controller('PhageListCtrl', ['$scope', 'Restangular', '$location',
         };
 
         $scope.query = {
-            limit: 10,
+            limit: 25,
             page: 1,
             search: $scope.search,
             spanin_type: $scope.choice,
